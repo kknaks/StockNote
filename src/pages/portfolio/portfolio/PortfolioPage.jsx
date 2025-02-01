@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import unlockIcon from '../../assets/flat-color-icons-unlock.svg';
-import plusIcon from '../../assets/ic-baseline-plus.svg';
-import arrowIcon from '../../assets/weui-arrow-filled.svg';
-import { Button } from "../../components/ui/button";
-import { Input } from "../../components/ui/input";
-import { useAuth } from '../../contexts/AuthContext'; //useAuth 훅 가져오기
+import unlockIcon from '@/assets/flat-color-icons-unlock.svg';
+import plusIcon from '@/assets/ic-baseline-plus.svg';
+import arrowIcon from '@/assets/weui-arrow-filled.svg';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useAuth } from '@/contexts/AuthContext'; //useAuth 훅 가져오기
 import axios from 'axios';
 
 const PortfolioPage = () => {
@@ -70,7 +70,7 @@ const PortfolioPage = () => {
                 }
             });
 
-            if (response.status === 201) { // 201 Created
+            if (response.status === 200) { // 201 Created
                 setIsModalOpen(false);
                 setNewPortfolio({ name: '', description: '' });
                 await fetchPortfolios();
@@ -124,7 +124,7 @@ const PortfolioPage = () => {
                                 />
                             </div>
                             <div className="frame-427318259">
-                                <div className="_500-00 text-green-500">
+                                <div className={`_500-00 ${totalStats.totalProfits >= 0 ? 'text-red-500' : 'text-blue-500'}`}>
                                     총 수익 ({totalStats.totalProfits >= 0 ? '+' : ''}{totalStats.totalProfits.toLocaleString()}원)
                                 </div>
                             </div>
